@@ -52,6 +52,13 @@
   html[dir="rtl"] #whatsapp-float { left: auto; right: 1.25rem; }
   html[dir="rtl"] #toast-root { right: auto; left: 1.25rem; }
   html[dir="rtl"] .size-chip, html[dir="rtl"] .color-chip { direction: ltr; }
+
+  /* horizontal filter bar */
+  .no-sb::-webkit-scrollbar { display: none; }
+  .no-sb { -ms-overflow-style: none; scrollbar-width: none; }
+  .fsel { appearance:none; -webkit-appearance:none; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23818890' stroke-width='2'><path d='M6 9l6 6 6-6'/></svg>"); background-repeat:no-repeat; background-position:right .7rem center; padding-right:1.9rem; }
+  html[dir="rtl"] .fsel { background-position:left .7rem center; padding-right:.9rem; padding-left:1.9rem; }
+  .filter-bar { box-shadow: 0 1px 0 rgba(0,0,0,.04); }
 </style>
 </head>
 <body class="bg-white text-zb-ink">
@@ -232,6 +239,7 @@ const I18N = {
     quick_view:'QUICK VIEW', in_stock:'IN STOCK', low_stock:'LOW STOCK', select_size:'SELECT SIZE',
     select_color:'SELECT COLOR', description:'DESCRIPTION', reviews:'REVIEWS', related_products:'YOU MAY ALSO LIKE',
     filters:'FILTERS', sort_by:'SORT BY', category:'CATEGORY', price_range:'PRICE RANGE', results_found:'results found',
+    clear_filters:'CLEAR ALL', all_sizes:'All sizes', size_label:'Size', browse_products_cta:'Browse products',
     your_cart:'YOUR CART', cart_empty:'Your cart is empty', continue_shopping:'CONTINUE SHOPPING', subtotal:'Subtotal',
     discount:'Discount', shipping:'Shipping', total:'Total', proceed_to_checkout:'PROCEED TO CHECKOUT', remove:'Remove',
     checkout:'CHECKOUT', contact_info:'CONTACT INFORMATION', shipping_address:'SHIPPING ADDRESS', full_name:'Full Name',
@@ -285,16 +293,17 @@ const I18N = {
   ar: {
     home:'الرئيسية', men:'رجالي', women:'حريمي', kids:'أطفال', shop:'المتجر', brands:'الماركات', sale:'تخفيضات',
     account:'حسابي', wishlist:'المفضلة', track_order:'تتبع الطلب', search_placeholder:'ابحث عن حذاء...',
-    newsletter_title:'تابعنا أولاً بأول', newsletter_sub:'اشتركي عشان توصلك أحدث العروض والمنتجات الجديدة.',
-    email_placeholder:'أدخلي إيميلك', subscribe:'اشتراك',
+    newsletter_title:'تابعنا أولاً بأول', newsletter_sub:'اشترك عشان توصلك أحدث العروض والمنتجات الجديدة.',
+    email_placeholder:'أدخل إيميلك', subscribe:'اشتراك',
     footer_shop:'المتجر', footer_help:'المساعدة', footer_company:'الشركة', footer_newsletter:'النشرة البريدية',
     footer_about:'من نحن', footer_contact:'تواصل معنا', footer_faq:'الأسئلة الشائعة', footer_privacy:'سياسة الخصوصية', footer_terms:'الشروط والأحكام',
     footer_rights:'جميع الحقوق محفوظة.', footer_cod:'الدفع عند الاستلام متاح',
-    new_arrivals:'وصل حديثاً', best_sellers:'الأكثر مبيعاً', shop_by_category:'تسوقي حسب الفئة', view_all:'عرض الكل',
+    new_arrivals:'وصل حديثاً', best_sellers:'الأكثر مبيعاً', shop_by_category:'تسوق حسب الفئة', view_all:'عرض الكل',
     add_to_cart:'أضف للسلة', view_details:'التفاصيل', out_of_stock:'غير متوفر', sold_out:'نفدت الكمية',
     quick_view:'عرض سريع', in_stock:'متوفر', low_stock:'كمية محدودة', select_size:'اختر المقاس',
     select_color:'اختر اللون', description:'الوصف', reviews:'التقييمات', related_products:'قد يعجبك أيضاً',
     filters:'الفلاتر', sort_by:'ترتيب حسب', category:'الفئة', price_range:'نطاق السعر', results_found:'نتيجة',
+    clear_filters:'مسح الفلاتر', all_sizes:'كل المقاسات', size_label:'المقاس', browse_products_cta:'تصفح المنتجات',
     your_cart:'عربة التسوق', cart_empty:'عربتك فاضية', continue_shopping:'متابعة التسوق', subtotal:'المجموع الفرعي',
     discount:'الخصم', shipping:'الشحن', total:'الإجمالي', proceed_to_checkout:'إتمام الطلب', remove:'حذف',
     checkout:'إتمام الطلب', contact_info:'بيانات التواصل', shipping_address:'عنوان التوصيل', full_name:'الاسم الكامل',
@@ -302,8 +311,8 @@ const I18N = {
     order_notes:'ملاحظات على الطلب (اختياري)', payment_method:'طريقة الدفع', cash_on_delivery:'الدفع عند الاستلام',
     order_summary:'ملخص الطلب', place_order:'تأكيد الطلب',
     order_placed:'تم تسجيل طلبك!', order_number:'رقم الطلب', track_order_btn:'تتبع الطلب',
-    whatsapp_confirm_title:'خطوة أخيرة — أكدي عبر واتساب',
-    whatsapp_confirm_sub:'اضغطي هنا عشان تبعتي تفاصيل طلبك لينا على واتساب ونأكده فوراً.',
+    whatsapp_confirm_title:'خطوة أخيرة — أكد عبر واتساب',
+    whatsapp_confirm_sub:'اضغط هنا عشان تبعت تفاصيل طلبك لينا على واتساب ونأكده فوراً.',
     send_order_whatsapp:'إرسال الطلب عبر واتساب',
     track_your_order:'تتبع طلبك', order_number_label:'رقم الطلب', phone_or_email:'التليفون أو الإيميل',
     track:'تتبع', your_wishlist:'المفضلة', wishlist_empty:'قائمة المفضلة فاضية',
@@ -312,38 +321,38 @@ const I18N = {
     company:'الشركة', about_zainabi:'عن زينابي', privacy_policy:'سياسة الخصوصية', terms_of_service:'الشروط والأحكام',
     footer_tagline:'أحذية وأزياء يومية في مكان واحد. أحذية وقمصان وفساتين — راحة وأناقة لكل العائلة.',
     free_shipping:'شحن مجاني', over:'للطلبات فوق', easy_returns:'إرجاع سهل', easy_returns_sub:'خلال 14 يوم بدون تعقيد',
-    cod_sub:'ادفعي وقت ما يوصلك الطلب', order_tracking:'تتبع الطلب', order_tracking_sub:'تابعي كل خطوة',
-    just_dropped:'وصل حديثاً', up_to_30_off:'خصم يصل لـ 30%', shop_the_sale:'تسوقي التخفيضات',
+    cod_sub:'ادفع وقت ما يوصلك الطلب', order_tracking:'تتبع الطلب', order_tracking_sub:'تابع كل خطوة',
+    just_dropped:'وصل حديثاً', up_to_30_off:'خصم يصل لـ 30%', shop_the_sale:'تسوق التخفيضات',
     best_seller:'الأكثر مبيعاً', new:'جديد',
     shop_all:'كل المنتجات', newest:'الأحدث', price_low_high:'السعر: من الأقل للأعلى', price_high_low:'السعر: من الأعلى للأقل',
     all:'الكل', gender:'الجنس', size:'المقاس', sale_only:'التخفيضات فقط', no_products_found:'لا توجد منتجات',
-    try_adjusting_filters:'جربي تعديل الفلاتر.',
+    try_adjusting_filters:'جرب تعديل الفلاتر.',
     product_not_found:'المنتج غير موجود', back_to_shop:'الرجوع للمتجر', reviews_lc:'تقييم', color:'اللون',
-    buy_now:'اشتري الآن', out_of_stock_option:'غير متوفر لهذا الاختيار',
+    buy_now:'اشترِ الآن', out_of_stock_option:'غير متوفر لهذا الاختيار',
     only_left_in_stock_1:'باقي', only_left_in_stock_2:'فقط في المخزون',
-    please_select_size:'اختاري المقاس من فضلك', option_out_of_stock:'هذا الاختيار غير متوفر حالياً',
+    please_select_size:'اختر المقاس من فضلك', option_out_of_stock:'هذا الاختيار غير متوفر حالياً',
     only_in_stock_1:'متوفر', only_in_stock_2:'فقط', added_to_cart:'أُضيف للسلة',
     customer_reviews:'تقييمات العملاء',
-    verified_purchase:'عملية شراء موثقة', customer:'عميل', no_reviews_yet:'لا توجد تقييمات بعد. كوني أول من يقيّم هذا المنتج.',
-    write_a_review:'اكتبي تقييم', your_name:'اسمك', rating:'التقييم', star:'نجمة', comment:'التعليق',
+    verified_purchase:'عملية شراء موثقة', customer:'عميل', no_reviews_yet:'لا توجد تقييمات بعد. كن أول من يقيّم هذا المنتج.',
+    write_a_review:'اكتب تقييم', your_name:'اسمك', rating:'التقييم', star:'نجمة', comment:'التعليق',
     submit_review:'إرسال التقييم', thanks_for_review:'شكراً على تقييمك!',
-    cart_empty_title:'عربتك فاضية', start_shopping:'ابدأي التسوق', free:'مجاني',
+    cart_empty_title:'عربتك فاضية', start_shopping:'ابدأ التسوق', free:'مجاني',
     contact_delivery:'بيانات التواصل والتوصيل', email_word:'الإيميل', street_address:'عنوان الشارع',
-    coupon_code:'كود الخصم', try_zb10:'جربي ZB10', shipping_calc_note:'الشحن والخصومات بتتحسب عند تأكيد الطلب.',
+    coupon_code:'كود الخصم', try_zb10:'جرب ZB10', shipping_calc_note:'الشحن والخصومات بتتحسب عند تأكيد الطلب.',
     placing_order:'جاري تسجيل الطلب…', order_error:'حصل خطأ أثناء تسجيل طلبك.', order_not_found:'الطلب غير موجود',
     will_deliver_to:'هنوصّل طلبك إلى', total_due_on_delivery:'المبلغ المستحق عند الاستلام:',
-    track_order_sub:'أدخلي رقم الطلب والتليفون أو الإيميل اللي استخدمتيه وقت الطلب.',
+    track_order_sub:'أدخل رقم الطلب والتليفون أو الإيميل اللي استخدمته وقت الطلب.',
     order_number_placeholder:'رقم الطلب (مثال: ZB-100001)',
     step_pending:'تم استلام الطلب', step_confirmed:'تم التأكيد', step_preparing:'جاري التجهيز',
     step_shipped:'تم الشحن', step_out_for_delivery:'في الطريق للتوصيل', step_delivered:'تم التسليم',
     no_order_found:'ما لقينا طلب بهذا الرقم.', contact_mismatch:'لقينا رقم الطلب، لكن بيانات التواصل مش مطابقة.',
-    your_wishlist:'المفضلة', wishlist_empty_title:'قائمة المفضلة فاضية', browse_products:'تصفحي المنتجات',
+    your_wishlist:'المفضلة', wishlist_empty_title:'قائمة المفضلة فاضية', browse_products:'تصفح المنتجات',
     sign_in:'تسجيل دخول', create_account:'إنشاء حساب', password:'كلمة المرور',
-    guest_checkout_note_1:'ما تحبي تسجلي دخول؟ تقدري تكملي الطلب كزائر و',
-    guest_checkout_note_2:'تتبعي طلبك من هنا', demo_accounts_note:'الحسابات التجريبية متخزنة في هذا المتصفح فقط.',
-    welcome_back:'أهلاً بعودتك!', account_created:'تم إنشاء الحساب!', sign_out:'تسجيل خروج', signed_in_as:'مسجلة دخول باسم',
+    guest_checkout_note_1:'ما تحب تسجل دخول؟ تقدر تكمل الطلب كزائر و',
+    guest_checkout_note_2:'تتبع طلبك من هنا', demo_accounts_note:'الحسابات التجريبية متخزنة في هذا المتصفح فقط.',
+    welcome_back:'أهلاً بعودتك!', account_created:'تم إنشاء الحساب!', sign_out:'تسجيل خروج', signed_in_as:'مسجّل دخول باسم',
     profile:'الملف الشخصي', orders_word:'الطلبات', signed_out:'تم تسجيل الخروج', items_word:'منتج', no_orders_yet:'لا توجد طلبات بعد.',
-    name_word:'الاسم', brands:'الماركات', shop_now:'تسوقي الآن',
+    name_word:'الاسم', brands:'الماركات', shop_now:'تسوق الآن',
   }
 };
 function t(key){ return (I18N[LANG] && I18N[LANG][key]) || I18N.en[key] || key; }
@@ -429,9 +438,9 @@ const PRODUCTS_SEED = [
 
 const BANNERS = [
   { id:'b1', title:'YOUR STYLE, YOUR STORE.', subtitle:'NEW COLLECTION', description:'Shoes and everyday fashion, curated for the whole family.', image:IMG.dressMannequin, buttonText:'Shop New In', buttonLink:'#/shop',
-    title_ar:'أسلوبك، متجرك.', subtitle_ar:'مجموعة جديدة', description_ar:'أحذية وأزياء يومية، مختارة بعناية لكل العائلة.', buttonText_ar:'تسوقي الجديد' },
+    title_ar:'أسلوبك، متجرك.', subtitle_ar:'مجموعة جديدة', description_ar:'أحذية وأزياء يومية، مختارة بعناية لكل العائلة.', buttonText_ar:'تسوق الجديد' },
   { id:'b2', title:'UP TO 30% OFF', subtitle:'LIMITED TIME', description:'Selected shoes and clothing, while stocks last.', image:IMG.red, buttonText:'Shop The Sale', buttonLink:'#/shop?sale=1',
-    title_ar:'خصم يصل لـ 30%', subtitle_ar:'لفترة محدودة', description_ar:'منتجات مختارة، لحد ما تنفد الكمية.', buttonText_ar:'تسوقي التخفيضات' },
+    title_ar:'خصم يصل لـ 30%', subtitle_ar:'لفترة محدودة', description_ar:'منتجات مختارة، لحد ما تنفد الكمية.', buttonText_ar:'تسوق التخفيضات' },
 ];
 
 const REVIEWS_SEED = {
@@ -698,32 +707,138 @@ document.body.addEventListener('click', (e)=>{
 --------------------------------------------------------------- */
 const app_ = document.getElementById('app');
 
+/* ---------------------------------------------------------------
+   SHARED FILTERING + HORIZONTAL FILTER BAR
+--------------------------------------------------------------- */
+const SIZE_ORDER = ['XS','S','M','L','XL','XXL'];
+function sizeRank(sz){ const i = SIZE_ORDER.indexOf(String(sz)); if(i>=0) return i; const n = parseFloat(sz); return isNaN(n) ? 999 : n+50; }
+function allSizes(){ return [...new Set(PRODUCTS.flatMap(p=>(p.variants||[]).map(v=>v.size)))].filter(Boolean).sort((a,b)=>sizeRank(a)-sizeRank(b)); }
+
+function filterProducts(state){
+  let list = PRODUCTS.filter(p=>{
+    if(state.category && p.category !== state.category) return false;
+    if(state.gender && p.gender !== state.gender && p.gender !== 'unisex') return false;
+    if(state.brand && p.brand !== state.brand) return false;
+    if(state.size && !(p.variants||[]).map(v=>String(v.size)).includes(String(state.size))) return false;
+    if(state.sale && !(p.onSale && p.comparePrice > p.price)) return false;
+    if(state.filter==='new' && !p.newArrival) return false;
+    if(state.filter==='bestseller' && !p.bestSeller) return false;
+    if(state.q && !(p.name||'').toLowerCase().includes(state.q.toLowerCase())) return false;
+    return true;
+  });
+  if(state.sort==='price-asc') list.sort((a,b)=>a.price-b.price);
+  else if(state.sort==='price-desc') list.sort((a,b)=>b.price-a.price);
+  return list;
+}
+
+function hasActiveFilters(state){ return !!(state.category || state.gender || state.size || state.sale || state.brand); }
+
+function filterBarHTML(state, opts){
+  opts = opts || {};
+  const sizes = allSizes();
+  const chip = (active, label, attrs) => `<button ${attrs} class="fchip shrink-0 whitespace-nowrap text-xs font-semibold tracking-wide px-4 py-2.5 border transition-colors ${active?'bg-zb-ink text-white border-zb-ink':'bg-white border-black/15 text-zb-ink hover:border-zb-ink'}">${label}</button>`;
+  const cats = [{v:'',label:t('all')}, ...CATEGORIES.map(c=>({v:c.slug,label:catName(c)}))];
+  const genders = [{v:'men',label:t('men')},{v:'women',label:t('women')},{v:'kids',label:t('kids')}];
+  return `
+  <div class="filter-bar sticky top-20 z-30 bg-white/95 backdrop-blur border-y border-black/10">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col xl:flex-row xl:items-center gap-2.5">
+
+      <div class="flex items-center gap-2 overflow-x-auto no-sb">
+        ${cats.map(c=>chip(state.category===c.v, escapeHtml(c.label), `data-f="cat" data-v="${escapeHtml(c.v)}"`)).join('')}
+        <span class="w-px h-7 bg-black/10 shrink-0 mx-1"></span>
+        ${genders.map(g=>chip(state.gender===g.v, escapeHtml(g.label), `data-f="gender" data-v="${g.v}"`)).join('')}
+      </div>
+
+      <div class="flex items-center gap-2 xl:ms-auto overflow-x-auto no-sb">
+        ${sizes.length?`
+        <select data-f="size" class="fsel shrink-0 bg-white border text-xs font-semibold px-3 py-2.5 cursor-pointer ${state.size?'border-zb-ink':'border-black/15'}">
+          <option value="">${t('size_label')}: ${t('all')}</option>
+          ${sizes.map(sz=>`<option value="${escapeHtml(String(sz))}" ${String(state.size)===String(sz)?'selected':''}>${t('size_label')} ${escapeHtml(String(sz))}</option>`).join('')}
+        </select>`:''}
+        ${chip(state.sale, t('sale_only'), 'data-f="sale"')}
+        <select data-f="sort" class="fsel shrink-0 bg-white border border-black/15 text-xs font-semibold px-3 py-2.5 cursor-pointer">
+          <option value="newest" ${state.sort==='newest'?'selected':''}>${t('newest')}</option>
+          <option value="price-asc" ${state.sort==='price-asc'?'selected':''}>${t('price_low_high')}</option>
+          <option value="price-desc" ${state.sort==='price-desc'?'selected':''}>${t('price_high_low')}</option>
+        </select>
+        ${hasActiveFilters(state)?`<button data-f="clear" class="shrink-0 whitespace-nowrap text-xs font-bold text-zb-teal px-2 hover:underline">${t('clear_filters')} ✕</button>`:''}
+      </div>
+    </div>
+  </div>`;
+}
+
+function mountFilterBar(slotId, state, onChange){
+  const slot = document.getElementById(slotId);
+  if(!slot) return;
+  const paint = ()=>{ slot.innerHTML = filterBarHTML(state); };
+  paint();
+  slot.addEventListener('click', (e)=>{
+    const b = e.target.closest('[data-f]');
+    if(!b || b.tagName === 'SELECT') return;
+    const f = b.dataset.f;
+    if(f==='cat') state.category = b.dataset.v;
+    else if(f==='gender') state.gender = (state.gender === b.dataset.v) ? '' : b.dataset.v;
+    else if(f==='sale') state.sale = !state.sale;
+    else if(f==='clear'){ state.category=''; state.gender=''; state.size=''; state.sale=false; state.brand=''; state.filter=''; }
+    else return;
+    paint(); onChange();
+  });
+  slot.addEventListener('change', (e)=>{
+    const f = e.target.dataset.f;
+    if(f==='size') state.size = e.target.value;
+    else if(f==='sort') state.sort = e.target.value;
+    else return;
+    paint(); onChange();
+  });
+}
+
+function gridOrEmpty(list){
+  return list.length
+    ? `<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8">${list.map(productCard).join('')}</div>`
+    : `<div class="py-20 text-center text-zb-gray"><p class="font-display text-xl mb-2">${t('no_products_found')}</p><p class="text-sm">${t('try_adjusting_filters')}</p></div>`;
+}
+
 function renderHome(){
   app_.innerHTML = `<div class="fade-in">
-    <section id="hero-slot"><div class="skel h-[420px] md:h-[560px]"></div></section>
-    <section class="border-b border-black/5"><div class="max-w-7xl mx-auto px-4 py-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
+    <section id="hero-slot"><div class="skel h-[360px] md:h-[520px]"></div></section>
+
+    <section id="home-filter-slot"></section>
+
+    <section class="max-w-7xl mx-auto px-4 pt-7 pb-14">
+      <div class="flex items-end justify-between gap-4 mb-5">
+        <div>
+          <p class="text-zb-teal text-[11px] font-bold tracking-[0.2em] mb-1.5">${t('just_dropped')}</p>
+          <h2 class="font-display text-2xl sm:text-3xl">${t('shop_all')}</h2>
+        </div>
+        <a href="#/shop" class="text-sm font-semibold text-zb-teal hover:underline shrink-0">${t('view_all')} →</a>
+      </div>
+      <p id="home-count" class="text-xs text-zb-gray mb-5"></p>
+      <div id="home-grid">${skeletonGrid(8)}</div>
+    </section>
+
+    <section class="border-y border-black/5 bg-zb-offwhite"><div class="max-w-7xl mx-auto px-4 py-6 grid grid-cols-2 md:grid-cols-4 gap-5 text-sm">
       <div class="flex items-center gap-3"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="1.6"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="18" cy="18" r="1.6"/></svg><div><p class="font-semibold">${t('free_shipping')}</p><p class="text-zb-gray text-xs">${t('over')} ${fmtPrice(SETTINGS.freeShippingThreshold)}</p></div></div>
       <div class="flex items-center gap-3"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="1.6"><path d="M4 12a8 8 0 1 0 3-6.2"/><path d="M4 4v5h5"/></svg><div><p class="font-semibold">${t('easy_returns')}</p><p class="text-zb-gray text-xs">${t('easy_returns_sub')}</p></div></div>
       <div class="flex items-center gap-3"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="1.6"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/></svg><div><p class="font-semibold">${t('cash_on_delivery')}</p><p class="text-zb-gray text-xs">${t('cod_sub')}</p></div></div>
       <div class="flex items-center gap-3"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><div><p class="font-semibold">${t('order_tracking')}</p><p class="text-zb-gray text-xs">${t('order_tracking_sub')}</p></div></div>
     </div></section>
-    <section class="max-w-7xl mx-auto px-4 py-16">
-      <div class="flex items-end justify-between mb-8"><h2 class="font-display text-3xl">${t('shop_by_category')}</h2></div>
+
+    <section class="max-w-7xl mx-auto px-4 py-14">
+      <div class="flex items-end justify-between mb-6"><h2 class="font-display text-2xl sm:text-3xl">${t('shop_by_category')}</h2></div>
       <div id="cat-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4">${skeletonGrid(4)}</div>
     </section>
-    <section class="max-w-7xl mx-auto px-4 py-16">
-      <div class="flex items-end justify-between mb-8"><div><p class="text-zb-teal text-xs font-bold tracking-[0.2em] mb-2">${t('just_dropped')}</p><h2 class="font-display text-3xl">${t('new_arrivals')}</h2></div><a href="#/shop?filter=new" class="text-sm font-semibold text-zb-teal hover:underline">${t('view_all')} →</a></div>
-      <div id="new-grid">${skeletonGrid()}</div>
-    </section>
-    <section class="bg-zb-offwhite"><div class="max-w-7xl mx-auto px-4 py-16">
-      <div class="flex items-end justify-between mb-8"><h2 class="font-display text-3xl">${t('best_sellers')}</h2><a href="#/shop?filter=bestseller" class="text-sm font-semibold text-zb-teal hover:underline">${t('view_all')} →</a></div>
-      <div id="best-grid">${skeletonGrid()}</div>
+
+    <section class="bg-zb-offwhite"><div class="max-w-7xl mx-auto px-4 py-14">
+      <div class="flex items-end justify-between mb-6"><h2 class="font-display text-2xl sm:text-3xl">${t('best_sellers')}</h2><a href="#/shop?filter=bestseller" class="text-sm font-semibold text-zb-teal hover:underline">${t('view_all')} →</a></div>
+      <div id="best-grid">${skeletonGrid(4)}</div>
     </div></section>
-    <section class="max-w-7xl mx-auto px-4 py-16">
-      <div class="flex items-end justify-between mb-8"><div><p class="text-zb-teal text-xs font-bold tracking-[0.2em] mb-2">${t('up_to_30_off')}</p><h2 class="font-display text-3xl">${t('sale')}</h2></div><a href="#/shop?sale=1" class="text-sm font-semibold text-zb-teal hover:underline">${t('shop_the_sale')} →</a></div>
-      <div id="sale-grid">${skeletonGrid()}</div>
+
+    <section class="max-w-7xl mx-auto px-4 py-14">
+      <div class="flex items-end justify-between mb-6"><div><p class="text-zb-teal text-[11px] font-bold tracking-[0.2em] mb-1.5">${t('up_to_30_off')}</p><h2 class="font-display text-2xl sm:text-3xl">${t('sale')}</h2></div><a href="#/shop?sale=1" class="text-sm font-semibold text-zb-teal hover:underline">${t('shop_the_sale')} →</a></div>
+      <div id="sale-grid">${skeletonGrid(4)}</div>
     </section>
-    <section class="bg-zb-ink text-white"><div class="max-w-7xl mx-auto px-4 py-16 grid md:grid-cols-3 gap-8 items-center">
+
+    <section class="bg-zb-ink text-white"><div class="max-w-7xl mx-auto px-4 py-14 grid md:grid-cols-3 gap-8 items-center">
       <div class="md:col-span-1"><p class="text-zb-tealight text-xs font-bold tracking-[0.2em] mb-3">BK CLUB</p><h2 class="font-display text-3xl leading-tight mb-4">EVERY STEP<br>EARNS YOU MORE.</h2><p class="text-white/60 text-sm mb-6">Create an account, track your orders, and be first to know about new drops.</p><a href="#/account" class="bg-white text-zb-ink font-bold text-sm tracking-wide px-6 py-3 inline-block hover:bg-zb-tealight transition-colors">JOIN ZAINABI CLUB</a></div>
       <div class="md:col-span-2 grid grid-cols-3 gap-4">
         <div class="border border-white/15 p-6"><p class="font-display text-3xl text-zb-tealight mb-2">1</p><p class="font-semibold text-sm mb-1">Shop</p><p class="text-white/50 text-xs">Browse new drops</p></div>
@@ -733,6 +848,7 @@ function renderHome(){
     </div></section>
   </div>`;
 
+  /* hero */
   const heroSlot = document.getElementById('hero-slot');
   let i = 0;
   const renderSlide = ()=>{
@@ -741,122 +857,76 @@ function renderHome(){
     const subtitle = LANG==='ar' && s.subtitle_ar ? s.subtitle_ar : s.subtitle;
     const description = LANG==='ar' && s.description_ar ? s.description_ar : s.description;
     const buttonText = LANG==='ar' && s.buttonText_ar ? s.buttonText_ar : (s.buttonText||'Shop Now');
+    const img = s.image||PLACEHOLDER;
     heroSlot.innerHTML = `<div class="relative bg-zb-ink text-white overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 items-center min-h-[420px] md:min-h-[560px]">
-        <div class="py-14 md:py-0 relative z-10">
-          <p class="text-zb-tealight text-xs font-bold tracking-[0.25em] mb-5">${escapeHtml(subtitle||'')}</p>
-          <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl leading-[0.95] mb-6">${escapeHtml(title||'')}</h1>
-          <p class="text-white/60 text-base mb-8 max-w-sm">${escapeHtml(description||'')}</p>
+      <img src="${img}" alt="" class="absolute inset-0 w-full h-full object-cover duo opacity-35 md:hidden" aria-hidden="true">
+      <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 items-center min-h-[360px] md:min-h-[520px]">
+        <div class="py-12 md:py-0 relative z-10">
+          <p class="text-zb-tealight text-[11px] font-bold tracking-[0.25em] mb-4">${escapeHtml(subtitle||'')}</p>
+          <h1 class="font-display text-3xl sm:text-5xl lg:text-6xl leading-[1.05] mb-4">${escapeHtml(title||'')}</h1>
+          <p class="text-white/70 text-sm md:text-base mb-7 max-w-sm">${escapeHtml(description||'')}</p>
           <a href="${s.buttonLink||'#/shop'}" class="bg-white text-zb-ink font-bold text-sm tracking-wide px-7 py-4 hover:bg-zb-tealight transition-colors inline-block">${escapeHtml(buttonText.toUpperCase())}</a>
-          <div class="flex gap-2 mt-10">${BANNERS.map((_,idx)=>`<span class="w-8 h-1 ${idx===i?'bg-zb-tealight':'bg-white/20'}"></span>`).join('')}</div>
+          <div class="flex gap-2 mt-8">${BANNERS.map((_,idx)=>`<span class="w-8 h-1 ${idx===i?'bg-zb-tealight':'bg-white/25'}"></span>`).join('')}</div>
         </div>
-        <div class="relative h-[280px] md:h-[560px] duo-dark"><img src="${s.image||PLACEHOLDER}" alt="${escapeHtml(title||'')}" class="w-full h-full object-cover duo"></div>
+        <div class="relative h-[520px] duo-dark hidden md:block"><img src="${img}" alt="${escapeHtml(title||'')}" class="w-full h-full object-cover duo"></div>
       </div>
     </div>`;
   };
   renderSlide();
-  setInterval(()=>{ i=(i+1)%BANNERS.length; renderSlide(); }, 5000);
+  if(window.__heroTimer) clearInterval(window.__heroTimer);
+  window.__heroTimer = setInterval(()=>{ i=(i+1)%BANNERS.length; renderSlide(); }, 5000);
 
+  /* quick filter + product grid straight under the hero */
+  const state = { category:'', gender:'', brand:'', size:'', sale:false, sort:'newest', q:'' };
+  const HOME_LIMIT = 12;
+  function paintHome(){
+    const list = filterProducts(state);
+    document.getElementById('home-count').textContent = `${list.length} ${t('results_found')}`;
+    const shown = list.slice(0, HOME_LIMIT);
+    document.getElementById('home-grid').innerHTML = gridOrEmpty(shown) + (list.length > HOME_LIMIT
+      ? `<div class="text-center mt-10"><a href="#/shop" class="inline-block border border-zb-ink px-8 py-3.5 text-sm font-bold tracking-wide hover:bg-zb-ink hover:text-white transition-colors">${t('view_all')} (${list.length})</a></div>` : '');
+  }
+  mountFilterBar('home-filter-slot', state, paintHome);
+  paintHome();
+
+  /* lower sections */
   document.getElementById('cat-grid').innerHTML = HOME_TILES.slice(0,4).map(c=>`
-    <a href="#/shop?${c.id==='kids' ? 'gender=kids' : 'category='+encodeURIComponent(c.slug)}" class="group relative h-64 overflow-hidden bg-zb-offwhite block">
+    <a href="#/shop?${c.id==='kids' ? 'gender=kids' : 'category='+encodeURIComponent(c.slug)}" class="group relative h-48 sm:h-64 overflow-hidden bg-zb-offwhite block">
       <img src="${c.image}" class="w-full h-full object-cover duo group-hover:scale-105 transition-transform duration-500" alt="${escapeHtml(catName(c))}">
       <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
       <div class="absolute bottom-4 left-4 text-white"><p class="font-display text-xl">${escapeHtml(catName(c).toUpperCase())}</p><p class="text-xs text-white/70">${t('shop_now')}</p></div>
     </a>`).join('');
 
-  const newArr = PRODUCTS.filter(p=>p.newArrival).slice(0,4);
   const best = PRODUCTS.filter(p=>p.bestSeller).slice(0,4);
   const sale = PRODUCTS.filter(p=>p.onSale && p.comparePrice>p.price).slice(0,4);
-  document.getElementById('new-grid').innerHTML = newArr.length ? `<div class="grid grid-cols-2 md:grid-cols-4 gap-6">${newArr.map(productCard).join('')}</div>` : emptyRow('No new arrivals yet.');
-  document.getElementById('best-grid').innerHTML = best.length ? `<div class="grid grid-cols-2 md:grid-cols-4 gap-6">${best.map(productCard).join('')}</div>` : emptyRow('No best sellers yet.');
-  document.getElementById('sale-grid').innerHTML = sale.length ? `<div class="grid grid-cols-2 md:grid-cols-4 gap-6">${sale.map(productCard).join('')}</div>` : emptyRow('No active sale items.');
+  document.getElementById('best-grid').innerHTML = best.length ? `<div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-8">${best.map(productCard).join('')}</div>` : emptyRow('—');
+  document.getElementById('sale-grid').innerHTML = sale.length ? `<div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-8">${sale.map(productCard).join('')}</div>` : emptyRow('—');
 }
 
 function renderShop(params){
-  app_.innerHTML = `<div class="fade-in max-w-7xl mx-auto px-4 py-10">
-    <h1 class="font-display text-3xl mb-6">${t('shop_all')}</h1>
-    <div class="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-8">
-      <aside class="space-y-6" id="filters"></aside>
-      <div>
-        <div class="flex items-center justify-between mb-6">
-          <p id="result-count" class="text-sm text-zb-gray"></p>
-          <select id="sort-select" class="border border-black/10 text-sm px-3 py-2">
-            <option value="newest">${t('newest')}</option>
-            <option value="price-asc">${t('price_low_high')}</option>
-            <option value="price-desc">${t('price_high_low')}</option>
-          </select>
-        </div>
-        <div id="shop-grid">${skeletonGrid(8)}</div>
-      </div>
+  const state = {
+    category: params.category||'', gender: params.gender||'', brand: params.brand||'',
+    size: params.size||'', sale: params.sale==='1', sort:'newest', q: params.q||'', filter: params.filter||''
+  };
+
+  app_.innerHTML = `<div class="fade-in">
+    <div class="max-w-7xl mx-auto px-4 pt-8 pb-4">
+      <h1 class="font-display text-2xl sm:text-3xl">${t('shop_all')}</h1>
+    </div>
+    <div id="shop-filter-slot"></div>
+    <div class="max-w-7xl mx-auto px-4 pt-5 pb-16">
+      <p id="result-count" class="text-xs text-zb-gray mb-5"></p>
+      <div id="shop-grid">${skeletonGrid(8)}</div>
     </div>
   </div>`;
 
-  const brands = [...new Set(PRODUCTS.map(p=>p.brand).filter(Boolean))];
-  const SIZE_ORDER = ['XS','S','M','L','XL','XXL'];
-  const sizeRank = (s)=>{ const i = SIZE_ORDER.indexOf(s); if(i>=0) return i; const n = parseFloat(s); return isNaN(n) ? 999 : n+50; };
-  const sizes = [...new Set(PRODUCTS.flatMap(p=>(p.variants||[]).map(v=>v.size)))].sort((a,b)=>sizeRank(a)-sizeRank(b));
-
-  const state = {
-    category: params.category||'', gender: params.gender||'', brand: params.brand||'',
-    size: params.size||'', sale: params.sale==='1', sort: 'newest', q: params.q||''
-  };
-
-  document.getElementById('filters').innerHTML = `
-    <div>
-      <p class="font-semibold text-sm mb-3">${t('category')}</p>
-      <div class="space-y-2 text-sm">
-        <label class="flex items-center gap-2"><input type="radio" name="f-cat" value="" ${!state.category?'checked':''}> ${t('all')}</label>
-        ${CATEGORIES.map(c=>`<label class="flex items-center gap-2"><input type="radio" name="f-cat" value="${c.slug}" ${state.category===c.slug?'checked':''}> ${escapeHtml(catName(c))}</label>`).join('')}
-      </div>
-    </div>
-    <div>
-      <p class="font-semibold text-sm mb-3">${t('gender')}</p>
-      <div class="space-y-2 text-sm">
-        <label class="flex items-center gap-2"><input type="radio" name="f-gender" value="" ${!state.gender?'checked':''}> ${t('all')}</label>
-        ${['men','women','kids'].map(g=>`<label class="flex items-center gap-2"><input type="radio" name="f-gender" value="${g}" ${state.gender===g?'checked':''}> ${t(g)}</label>`).join('')}
-      </div>
-    </div>
-    ${sizes.length?`<div><p class="font-semibold text-sm mb-3">${t('size')}</p><div class="flex flex-wrap gap-2">
-      ${sizes.map(s=>`<button data-size="${s}" class="size-chip border text-xs px-3 py-2 ${state.size==String(s)?'bg-zb-ink text-white border-zb-ink':'border-black/15'}">${s}</button>`).join('')}
-    </div></div>`:''}
-    <div><label class="flex items-center gap-2 text-sm font-semibold"><input type="checkbox" id="f-sale" ${state.sale?'checked':''}> ${t('sale_only')}</label></div>
-  `;
-
-  function applyAndRender(){
-    let list = PRODUCTS.filter(p=>{
-      if(state.category && p.category !== state.category) return false;
-      if(state.gender && p.gender !== state.gender) return false;
-      if(state.size && !(p.variants||[]).map(v=>String(v.size)).includes(state.size)) return false;
-      if(state.sale && !(p.onSale && p.comparePrice > p.price)) return false;
-      if(state.q && !(p.name||'').toLowerCase().includes(state.q.toLowerCase())) return false;
-      return true;
-    });
-    if(state.sort==='price-asc') list.sort((a,b)=>a.price-b.price);
-    else if(state.sort==='price-desc') list.sort((a,b)=>b.price-a.price);
-
+  function paintShop(){
+    const list = filterProducts(state);
     document.getElementById('result-count').textContent = `${list.length} ${t('results_found')}`;
-    document.getElementById('shop-grid').innerHTML = list.length
-      ? `<div class="grid grid-cols-2 md:grid-cols-3 gap-6">${list.map(productCard).join('')}</div>`
-      : `<div class="py-20 text-center text-zb-gray"><p class="font-display text-xl mb-2">${t('no_products_found')}</p><p class="text-sm">${t('try_adjusting_filters')}</p></div>`;
+    document.getElementById('shop-grid').innerHTML = gridOrEmpty(list);
   }
-
-  document.getElementById('filters').addEventListener('change', (e)=>{
-    if(e.target.name==='f-cat') state.category = e.target.value;
-    if(e.target.name==='f-gender') state.gender = e.target.value;
-    if(e.target.id==='f-sale') state.sale = e.target.checked;
-    applyAndRender();
-  });
-  document.getElementById('filters').addEventListener('click', (e)=>{
-    const chip = e.target.closest('.size-chip');
-    if(chip){ state.size = state.size===chip.dataset.size ? '' : chip.dataset.size;
-      [...document.querySelectorAll('.size-chip')].forEach(c=>c.classList.remove('bg-zb-ink','text-white','border-zb-ink'));
-      if(state.size) chip.classList.add('bg-zb-ink','text-white','border-zb-ink');
-      applyAndRender();
-    }
-  });
-  document.getElementById('sort-select').addEventListener('change', (e)=>{ state.sort = e.target.value; applyAndRender(); });
-
-  applyAndRender();
+  mountFilterBar('shop-filter-slot', state, paintShop);
+  paintShop();
 }
 
 function renderProduct(id){
@@ -1273,10 +1343,10 @@ function render(){
     <p>بدأنا زينابي لأن إيجاد أحذية بجودة كويسة وسعر عادل ما لازم يكون معقد. كل قطعة بنعرضها هي قطعة يسعدنا نلبسها بنفسنا — من الأحذية الرياضية اليومية للبوت المصمم للاستخدام الحقيقي.</p>
     <h2 class="text-zb-ink font-bold text-base mt-2">شنو بنهتم بيه</h2>
     <p><strong>الجودة أولاً.</strong> بنتأكد من الراحة والخامات وجودة التصنيع قبل ما أي منتج يتنزل في الموقع.</p>
-    <p><strong>أسعار عادلة.</strong> بدون "تخفيضات" وهمية مبالغ فيها — اللي شايفاه هو اللي بتدفعيه.</p>
-    <p><strong>دعم حقيقي.</strong> راسلينا على واتساب في أي وقت — شخص حقيقي بيرد، مش بوت.</p>
-    <p><strong>الدفع عند الاستلام.</strong> ادفعي وقت ما طلبك يوصل لبابك، عشان تكوني متأكدة تماماً من اللي بتاخديه.</p>
-    <p class="pt-2">عندك سؤال أو منتج تحبي نوفره؟ <a href="#/contact" class="text-zb-teal underline">تواصلي معنا</a> — يسعدنا نسمع منك.</p>` : `
+    <p><strong>أسعار عادلة.</strong> بدون "تخفيضات" وهمية مبالغ فيها — اللي شايفه هو اللي بتدفعه.</p>
+    <p><strong>دعم حقيقي.</strong> راسلنا على واتساب في أي وقت — شخص حقيقي بيرد، مش بوت.</p>
+    <p><strong>الدفع عند الاستلام.</strong> ادفع وقت ما طلبك يوصل لبابك، عشان تكون متأكد تماماً من اللي بتاخده.</p>
+    <p class="pt-2">عندك سؤال أو منتج تحب نوفره؟ <a href="#/contact" class="text-zb-teal underline">تواصل معنا</a> — يسعدنا نسمع منك.</p>` : `
     <p>Zainabi Store is a Sudan-based shop for shoes and everyday fashion — footwear, shirts, and dresses picked for comfort, durability, and honest prices, for the whole family.</p>
     <p>We started Zainabi because finding good-quality shoes at a fair price shouldn't be complicated. Every item we list is one we'd be happy to wear ourselves — from everyday sneakers and slip-ons to boots built for real use.</p>
     <h2 class="text-zb-ink font-bold text-base mt-2">What we care about</h2>
@@ -1287,25 +1357,25 @@ function render(){
     <p class="pt-2">Have a question or a product you'd like us to carry? <a href="#/contact" class="text-zb-teal underline">Get in touch</a> — we'd love to hear from you.</p>`);
 
   if(parts[0]==='contact') return renderStatic(LANG==='ar'?'تواصل معنا':'CONTACT US', LANG==='ar'
-    ? `<p>راسلينا على واتساب على <a href="https://wa.me/${SETTINGS.whatsapp}" target="_blank" rel="noopener" class="text-zb-teal underline">+${SETTINGS.whatsapp.slice(0,3)} ${SETTINGS.whatsapp.slice(3,5)} ${SETTINGS.whatsapp.slice(5,8)} ${SETTINGS.whatsapp.slice(8)}</a>. عادة بنرد خلال ساعات قليلة.</p>`
+    ? `<p>راسلنا على واتساب على <a href="https://wa.me/${SETTINGS.whatsapp}" target="_blank" rel="noopener" class="text-zb-teal underline">+${SETTINGS.whatsapp.slice(0,3)} ${SETTINGS.whatsapp.slice(3,5)} ${SETTINGS.whatsapp.slice(5,8)} ${SETTINGS.whatsapp.slice(8)}</a>. عادة بنرد خلال ساعات قليلة.</p>`
     : `<p>Message us on WhatsApp at <a href="https://wa.me/${SETTINGS.whatsapp}" target="_blank" rel="noopener" class="text-zb-teal underline">+${SETTINGS.whatsapp.slice(0,3)} ${SETTINGS.whatsapp.slice(3,5)} ${SETTINGS.whatsapp.slice(5,8)} ${SETTINGS.whatsapp.slice(8)}</a>. We usually reply within a few hours.</p>`);
 
   if(parts[0]==='faq') return renderStatic('FAQ', LANG==='ar'
-    ? `<p><strong>الشحن:</strong> الطلبات بتشحن خلال 1-2 يوم عمل.</p><p><strong>الإرجاع:</strong> إرجاع سهل خلال 14 يوم للمنتجات غير المستخدمة.</p><p><strong>الدفع:</strong> الدفع عند الاستلام متاح حالياً.</p><p><strong>عندك سؤال؟</strong> راسلينا في أي وقت على <a href="https://wa.me/${SETTINGS.whatsapp}" target="_blank" rel="noopener" class="text-zb-teal underline">واتساب</a>.</p>`
+    ? `<p><strong>الشحن:</strong> الطلبات بتشحن خلال 1-2 يوم عمل.</p><p><strong>الإرجاع:</strong> إرجاع سهل خلال 14 يوم للمنتجات غير المستخدمة.</p><p><strong>الدفع:</strong> الدفع عند الاستلام متاح حالياً.</p><p><strong>عندك سؤال؟</strong> راسلنا في أي وقت على <a href="https://wa.me/${SETTINGS.whatsapp}" target="_blank" rel="noopener" class="text-zb-teal underline">واتساب</a>.</p>`
     : `<p><strong>Shipping:</strong> Orders ship within 1-2 business days.</p><p><strong>Returns:</strong> 14-day hassle-free returns on unworn items.</p><p><strong>Payment:</strong> Cash on delivery is currently supported.</p><p><strong>Questions?</strong> Message us anytime on <a href="https://wa.me/${SETTINGS.whatsapp}" target="_blank" rel="noopener" class="text-zb-teal underline">WhatsApp</a>.</p>`);
 
   if(parts[0]==='privacy') return renderStatic(LANG==='ar'?'سياسة الخصوصية':'PRIVACY POLICY', LANG==='ar' ? `
-    <p>توضح هذه السياسة إيه المعلومات اللي متجر زينابي بيجمعها وقت ما تتسوقي معانا، وكيف بنستخدمها. بنجمع بس اللي محتاجينه عشان نوصل طلبك ليك.</p>
+    <p>توضح هذه السياسة إيه المعلومات اللي متجر زينابي بيجمعها وقت ما تتسوق معانا، وكيف بنستخدمها. بنجمع بس اللي محتاجينه عشان نوصل طلبك ليك.</p>
     <h2 class="text-zb-ink font-bold text-base mt-2">المعلومات اللي بنجمعها</h2>
-    <p>وقت ما تعملي طلب، بنجمع اسمك، رقم تليفونك، عنوان التوصيل، وإيميلك لو اخترتي تديه لينا. ده بيتستخدم بس عشان نعالج ونأكد ونوصل طلبك.</p>
+    <p>وقت ما تعمل طلب، بنجمع اسمك، رقم تليفونك، عنوان التوصيل، وإيميلك لو اخترت تديه لينا. ده بيتستخدم بس عشان نعالج ونأكد ونوصل طلبك.</p>
     <h2 class="text-zb-ink font-bold text-base mt-2">كيف بنستخدم معلوماتك</h2>
     <p>بنستخدم بياناتك عشان نأكد الطلبات (بما فيها عبر واتساب)، ننسق التوصيل، نرد على أسئلتك، ونحتفظ بسجل طلباتك السابقة عشان نقدر نساعدك لو صار في مشكلة بمنتج.</p>
     <h2 class="text-zb-ink font-bold text-base mt-2">اللي ما بنعملوش</h2>
     <p>ما بنبيع ولا بنأجر معلوماتك الشخصية لأي جهة تالتة أبداً. ما بنجمع بيانات بطاقات دفع أونلاين — الدفع عند الاستلام، يتم شخصياً وقت التوصيل.</p>
     <h2 class="text-zb-ink font-bold text-base mt-2">الكوكيز والتخزين المحلي</h2>
-    <p>موقعنا بيستخدم التخزين المحلي في متصفحك عشان يفتكر عربتك والمفضلة بين الزيارات. هذه البيانات فاضلة في جهازك أنتِ وما بتتبعت لينا إلا وقت ما تعملي طلب.</p>
+    <p>موقعنا بيستخدم التخزين المحلي في متصفحك عشان يفتكر عربتك والمفضلة بين الزيارات. هذه البيانات فاضلة في جهازك أنت وما بتتبعت لينا إلا وقت ما تعمل طلب.</p>
     <h2 class="text-zb-ink font-bold text-base mt-2">حقوقك</h2>
-    <p>تقدري تطلبي منا في أي وقت نوريكِ شنو المعلومات المحفوظة عندنا عنك، أو تعديلها أو حذفها. بس راسلينا على <a href="https://wa.me/${SETTINGS.whatsapp}" target="_blank" rel="noopener" class="text-zb-teal underline">واتساب</a>.</p>
+    <p>تقدر تطلب منا في أي وقت نوريك شنو المعلومات المحفوظة عندنا عنك، أو تعديلها أو حذفها. بس راسلنا على <a href="https://wa.me/${SETTINGS.whatsapp}" target="_blank" rel="noopener" class="text-zb-teal underline">واتساب</a>.</p>
     <h2 class="text-zb-ink font-bold text-base mt-2">تغييرات على هذه السياسة</h2>
     <p>لو هذه السياسة تغيرت، هنحدّث هذه الصفحة. استمرارك بالتسوق معنا بعد أي تغيير يعني موافقتك على السياسة المحدّثة.</p>` : `
     <p>This policy explains what information Zainabi Store collects when you shop with us, and how we use it. We only collect what we need to get your order to you.</p>
@@ -1323,24 +1393,24 @@ function render(){
     <p>If this policy changes, we'll update this page. Continuing to shop with us after a change means you accept the updated policy.</p>`);
 
   if(parts[0]==='terms') return renderStatic(LANG==='ar'?'الشروط والأحكام':'TERMS OF SERVICE', LANG==='ar' ? `
-    <p>بوضعك طلب مع متجر زينابي، أنتِ موافقة على الشروط أدناه. من فضلك اقرأيها قبل إتمام الطلب.</p>
+    <p>بوضعك طلب مع متجر زينابي، أنت موافق على الشروط أدناه. من فضلك اقرأها قبل إتمام الطلب.</p>
     <h2 class="text-zb-ink font-bold text-base mt-2">المنتجات والأسعار</h2>
     <p>الأسعار معروضة بالجنيه السوداني (SDG) وممكن تتغير بدون إشعار مسبق. بنحاول قد ما نقدر نصور المنتجات بدقة، لكن ممكن يصير فرق بسيط في اللون أو الملمس بسبب الإضاءة أو إعدادات الشاشة.</p>
     <h2 class="text-zb-ink font-bold text-base mt-2">الطلبات والتأكيد</h2>
-    <p>وضع طلب في الموقع بيحجز المنتج(ات) ليكِ. ممكن نتواصل معاكِ على واتساب لتأكيد التفاصيل قبل الشحن. الطلبات خاضعة لتوفر المخزون — لو منتج نفد قبل ما نأكد، هنعلمك ونعرض بدائل أو استرجاع كامل لأي مبلغ مدفوع.</p>
+    <p>وضع طلب في الموقع بيحجز المنتج(ات) ليك. ممكن نتواصل معاك على واتساب لتأكيد التفاصيل قبل الشحن. الطلبات خاضعة لتوفر المخزون — لو منتج نفد قبل ما نأكد، هنعلمك ونعرض بدائل أو استرجاع كامل لأي مبلغ مدفوع.</p>
     <h2 class="text-zb-ink font-bold text-base mt-2">الدفع</h2>
     <p>حالياً بنقبل الدفع عند الاستلام فقط. الدفع بيتم بالكامل لمندوب التوصيل وقت وصول طلبك.</p>
     <h2 class="text-zb-ink font-bold text-base mt-2">الشحن والتوصيل</h2>
     <p>عادة الطلبات بتتشحن خلال 1-2 يوم عمل. وقت التوصيل بيختلف حسب الموقع. رسوم توصيل بتنطبق زي ما موضح وقت إتمام الطلب، إلا لو طلبك مؤهل للشحن المجاني.</p>
     <h2 class="text-zb-ink font-bold text-base mt-2">الإرجاع والاستبدال</h2>
-    <p>بنقبل الإرجاع والاستبدال خلال 14 يوم من التوصيل، بشرط يكون المنتج غير مستخدم وفي عبوته الأصلية. لبدء عملية إرجاع، راسلينا على واتساب برقم طلبك. المنتجات اللي عليها علامات استخدام أو تلف مش بسببنا أو ناقصة عبوتها الأصلية ممكن ما تكون مؤهلة للإرجاع.</p>
+    <p>بنقبل الإرجاع والاستبدال خلال 14 يوم من التوصيل، بشرط يكون المنتج غير مستخدم وفي عبوته الأصلية. لبدء عملية إرجاع، راسلنا على واتساب برقم طلبك. المنتجات اللي عليها علامات استخدام أو تلف مش بسببنا أو ناقصة عبوتها الأصلية ممكن ما تكون مؤهلة للإرجاع.</p>
     <h2 class="text-zb-ink font-bold text-base mt-2">إلغاء الطلب</h2>
-    <p>تقدري تلغي طلبك في أي وقت قبل شحنه بمراسلتنا على واتساب برقم طلبك.</p>
+    <p>تقدر تلغي طلبك في أي وقت قبل شحنه بمراسلتنا على واتساب برقم طلبك.</p>
     <h2 class="text-zb-ink font-bold text-base mt-2">حدود المسؤولية</h2>
     <p>متجر زينابي مش مسؤول عن التأخيرات الناتجة عن ظروف خارجة عن إرادتنا، زي الطقس أو حالة الطرق أو مشاكل شركة التوصيل.</p>
     <h2 class="text-zb-ink font-bold text-base mt-2">تغييرات على هذه الشروط</h2>
     <p>ممكن نحدّث هذه الشروط من وقت لآخر. النسخة المنشورة في هذه الصفحة وقت طلبك هي اللي بتنطبق على طلبك.</p>
-    <p class="pt-2">عندك سؤال عن هذه الشروط؟ <a href="https://wa.me/${SETTINGS.whatsapp}" target="_blank" rel="noopener" class="text-zb-teal underline">راسلينا على واتساب</a>.</p>` : `
+    <p class="pt-2">عندك سؤال عن هذه الشروط؟ <a href="https://wa.me/${SETTINGS.whatsapp}" target="_blank" rel="noopener" class="text-zb-teal underline">راسلنا على واتساب</a>.</p>` : `
     <p>By placing an order with Zainabi Store, you agree to the terms below. Please read them before checking out.</p>
     <h2 class="text-zb-ink font-bold text-base mt-2">Products &amp; pricing</h2>
     <p>Prices are listed in Sudanese Pounds (SDG) and may change without notice. We do our best to photograph products accurately, but slight variations in color or texture may occur due to lighting or screen settings.</p>
